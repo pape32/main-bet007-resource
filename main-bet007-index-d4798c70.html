@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+  <title>bet007 · 日常查询与对照</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #e9f4f3;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      color: #1e2f2d;
+      line-height: 1.6;
+      padding: 0 1.2rem 3.5rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .page-wrap {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* hero — 用网格背景 + 点缀 */
+    .hero {
+      margin-top: 2.5rem;
+      margin-bottom: 2.8rem;
+      padding: 2.2rem 1.8rem;
+      background: #1f4e4a;
+      background-image: 
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      border-radius: 40px 40px 28px 28px;
+      color: #d4f0ec;
+      box-shadow: 0 12px 28px -8px rgba(20, 60, 55, 0.25);
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero .sub {
+      font-size: 1rem;
+      opacity: 0.8;
+      border-left: 3px solid #6dc5bd;
+      padding-left: 1rem;
+    }
+
+    /* 网格卡片 */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.8rem;
+      margin: 2.2rem 0 2.5rem;
+    }
+
+    @media (min-width: 580px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 850px) {
+      .grid-cards {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .card {
+      background: #ffffffd9;
+      backdrop-filter: blur(2px);
+      border-radius: 28px;
+      padding: 1.6rem 1.5rem 1.8rem;
+      box-shadow: 0 4px 14px rgba(28, 70, 66, 0.08);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+      border: 1px solid #c7e2de;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px -6px #1e5f5890;
+      border-color: #96cbc3;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #18655c;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .card h3:before {
+      content: "▰";
+      color: #2f8c82;
+      font-size: 1.1rem;
+      margin-right: 0.2rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #2d423f;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0.2rem;
+    }
+
+    .card li {
+      padding: 0.25rem 0;
+      position: relative;
+      padding-left: 1rem;
+    }
+
+    .card li:before {
+      content: "—";
+      color: #4fa89d;
+      font-weight: 300;
+      position: absolute;
+      left: 0;
+    }
+
+    .tag {
+      display: inline-block;
+      background: #d6f0eb;
+      color: #13625a;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      margin-top: 0.6rem;
+      align-self: flex-start;
+    }
+
+    /* 自然链接段落区 */
+    .link-section {
+      background: #f1faf8;
+      border-radius: 32px;
+      padding: 1.8rem 2rem;
+      margin: 2.5rem 0;
+      border-left: 5px solid #3aa397;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+    }
+
+    .link-section p {
+      max-width: 780px;
+    }
+
+    .link-section a {
+      color: #1b6f65;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      text-decoration-color: #93cdc4;
+      font-weight: 450;
+      transition: 0.15s;
+    }
+
+    .link-section a:hover {
+      color: #0b4d44;
+      text-decoration-color: #0b4d44;
+    }
+
+    .faq-summary {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      margin: 2.2rem 0 1.5rem;
+      background: #f6fcfb;
+      padding: 1.6rem 1.6rem 1.8rem;
+      border-radius: 30px;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid #c4ddd7;
+      padding-bottom: 0.8rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 500;
+      color: #1d5f57;
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .faq-a {
+      color: #38524d;
+      font-size: 0.92rem;
+    }
+
+    .quiet-note {
+      font-size: 0.85rem;
+      color: #4b6a65;
+      margin-top: 0.5rem;
+      padding: 0.6rem 0 0 0.2rem;
+      border-top: 1px dashed #b0cec8;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #bfdbd5;
+      margin: 0.8rem 0;
+      opacity: 0.5;
+    }
+
+    .footer-meta {
+      text-align: left;
+      font-size: 0.78rem;
+      color: #54706b;
+      margin-top: 2.2rem;
+      padding-top: 0.8rem;
+      border-top: 1px solid #cbdcd7;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+      .hero {
+        padding: 1.6rem 1.2rem;
+      }
+      .link-section {
+        padding: 1.3rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <!-- hero -->
+  <div class="hero">
+    <h1>bet007 · 日常对照</h1>
+    <div class="sub">数字、数据与信息之间的安静入口</div>
+  </div>
+
+  <!-- 信息卡片网格 -->
+  <div class="grid-cards">
+    <div class="card">
+      <h3>用作查询</h3>
+      <p>快速检索、对照数值或字段，不需要层层跳转。许多人把它当作一个轻量的信息节点来使用。</p>
+      <span class="tag">日常参考</span>
+    </div>
+    <div class="card">
+      <h3>延伸阅读</h3>
+      <p>从某一条数据出发，关联上下文。适合在浏览中途停下来，补充一点背景或平行对比。</p>
+      <span class="tag">关联视角</span>
+    </div>
+    <div class="card">
+      <h3>适合人群</h3>
+      <ul>
+        <li>需要频繁对照信息的人</li>
+        <li>喜欢简洁界面、不喜欢干扰的人</li>
+        <li>偶尔延伸搜索，但不希望偏离太远</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 自然链接段落 (嵌入 bet007) -->
+  <div class="link-section">
+    <p>日常阅读或处理数据时，往往需要一个不打扰节奏的参考点——既不喧宾夺主，又能快速提供对照。如果你也在找类似的工具型页面，可以试试 <a href="https://main-bet007.com">bet007</a>。它没有复杂的结构，更像一个安静的侧边卡片，适合在需要平行信息时随手翻开。</p>
+    <p style="margin-top: 0.8rem;">很多人在浏览新闻、整理表格或做简单研究的时候，会把 bet007 作为一个辅助窗口。它的特点是直接、克制，不试图引导你进入某个流程，而是提供你能直接使用的数据或对照。</p>
+  </div>
+
+  <!-- FAQ 摘要 (内容真实克制) -->
+  <div class="faq-summary">
+    <div class="faq-item">
+      <span class="faq-q">▸ 这个页面主要用来做什么？</span>
+      <span class="faq-a">用于日常的信息对照、查询、以及简单的横向比较。不涉及操作引导或交易。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">▸ 使用前需要了解什么？</span>
+      <span class="faq-a">基本的信息阅读习惯即可。建议把它当作参考卡片而非唯一来源，重要数据可以二次核对。</span>
+    </div>
+    <div class="faq-item">
+      <span class="faq-q">▸ 移动端体验如何？</span>
+      <span class="faq-a">卡片式布局对窄屏友好，字体和间距都做了响应式调整，单手操作没有压力。</span>
+    </div>
+    <div class="quiet-note">
+      * 以上描述基于用户日常使用场景，不构成任何承诺或推荐。
+    </div>
+  </div>
+
+  <!-- 简洁 footer -->
+  <div class="footer-meta">
+    信息卡片设计 · 蓝绿色调 · 网格背景<br>
+    本页面仅作介绍与展示，内容方向偏向参考与延伸。
+  </div>
+
+</div>
+</body>
+</html>
