@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日常索引 · 赏金女王</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f5f3f0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            font-weight: 350;
+            line-height: 1.7;
+            color: #2b2a27;
+            padding: 2.5rem 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 640px;
+            width: 100%;
+        }
+
+        /* 主视觉 —— 轻柔留白 */
+        .hero {
+            padding: 3.5rem 0 2rem;
+            border-bottom: 1px solid #e2ddd6;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 380;
+            letter-spacing: -0.01em;
+            color: #1e1d1b;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1rem;
+            color: #6c6a65;
+            max-width: 32em;
+            margin-top: 0.15rem;
+        }
+
+        /* 通用标题层级 */
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 370;
+            letter-spacing: 0.01em;
+            color: #383632;
+            margin: 2.4rem 0 1rem 0;
+            padding-bottom: 0.2rem;
+            border-bottom: 1px dotted #d6d2cb;
+        }
+
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 380;
+            color: #4c4a46;
+            margin: 1.4rem 0 0.4rem 0;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 0.98rem;
+            color: #3e3c38;
+        }
+
+        .quiet {
+            color: #6f6c66;
+            font-size: 0.9rem;
+        }
+
+        /* 卡片组 —— 信息卡片式 */
+        .card-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin: 1.8rem 0 1.2rem;
+        }
+
+        .card {
+            background: #fffffffa;
+            border-radius: 18px;
+            padding: 1.3rem 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid #efebe6;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 14px rgba(80, 70, 55, 0.06);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-header em {
+            font-style: normal;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: #9e9a92;
+            background: #f0ede8;
+            padding: 0.1rem 0.6rem;
+            border-radius: 40px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 适合人群 用简易列表 */
+        .list-soft {
+            list-style: none;
+            padding: 0;
+            margin: 0.7rem 0 0.2rem;
+        }
+
+        .list-soft li {
+            padding: 0.3rem 0 0.3rem 1.4rem;
+            position: relative;
+            font-size: 0.96rem;
+            color: #3f3d39;
+        }
+
+        .list-soft li::before {
+            content: "·";
+            position: absolute;
+            left: 0.3rem;
+            color: #b0aaa1;
+            font-weight: 600;
+        }
+
+        /* 自然链接段落 */
+        .link-paragraph {
+            background: #f1eee9;
+            padding: 1.2rem 1.8rem;
+            border-radius: 40px 18px 18px 40px;
+            margin: 2.2rem 0 1.8rem;
+            border-left: 4px solid #b7b0a6;
+        }
+
+        .link-paragraph a {
+            color: #3c3a35;
+            text-decoration: underline;
+            text-underline-offset: 0.2rem;
+            text-decoration-color: #c2bab0;
+            font-weight: 400;
+        }
+
+        .link-paragraph a:hover {
+            text-decoration-color: #8f887d;
+            color: #1f1e1b;
+        }
+
+        /* FAQ 摘要 */
+        .faq-compact {
+            background: #faf9f7;
+            border-radius: 24px;
+            padding: 1.2rem 1.5rem 1rem;
+            margin: 2rem 0 1.2rem;
+            border: 1px solid #e7e2db;
+        }
+
+        .faq-item {
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 400;
+            color: #3a3834;
+            font-size: 0.95rem;
+            margin-bottom: 0.1rem;
+        }
+
+        .faq-item span {
+            color: #62605b;
+            font-size: 0.9rem;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2ddd6;
+            margin: 2rem 0 1rem;
+        }
+
+        .footer-note {
+            font-size: 0.75rem;
+            color: #9c9891;
+            text-align: left;
+            margin-top: 2.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e7e2db;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 520px) {
+            body {
+                padding: 1.6rem 1rem;
+            }
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .card {
+                padding: 1rem 1.2rem;
+            }
+            .link-paragraph {
+                padding: 1rem 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 主视觉 / 从日常查询切入 -->
+    <div class="hero">
+        <h1>日常索引 · 赏金女王</h1>
+        <div class="sub">
+            一份温和的信息卡片：用来对照、延伸，或者只是安静地看一看。
+        </div>
+    </div>
+
+    <!-- 介绍 / 用途卡片 -->
+    <h2>用途卡片</h2>
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span>对照查阅</span>
+                <em>速览</em>
+            </div>
+            <p>
+                当你遇到一个名字、一个功能点、一个模糊的印象，需要快速对照确认——把这里当作一个安静的便签。不堆叠术语，只留下可延伸的线索。
+            </p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span>延伸阅读</span>
+                <em>背景</em>
+            </div>
+            <p>
+                有些内容并不急于一次读完。你可以把它看作一个起点：从卡片出发，走向更具体的文档、社区讨论或个人笔记。保持开放，但不制造焦虑。
+            </p>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <span>日常随手记</span>
+                <em>轻量</em>
+            </div>
+            <p>
+                不需要登录、不需要收藏夹。页面本身就像一张可翻阅的索引卡，适合在零碎时间里扫一眼，或作为某个话题的参照锚点。
+            </p>
+        </div>
+    </div>
+
+    <!-- 适合人群段落 + 简易列表 -->
+    <h2>适合人群</h2>
+    <p>
+        这个页面不预设你必须具备某种背景。无论你是初次接触，还是想梳理已有认知，都可以在这里找到安静的落脚点。
+    </p>
+    <ul class="list-soft">
+        <li>习惯先看概览、再决定是否深入的人</li>
+        <li>想要一个无干扰的参照页，而非营销味浓的落地页</li>
+        <li>偶尔需要向他人简单介绍，或留作自己回顾</li>
+        <li>对「赏金女王」相关话题保持好奇，但希望节奏由自己控制</li>
+    </ul>
+
+    <!-- 自然链接段落 —— 句子嵌入 -->
+    <div class="link-paragraph">
+        <p>
+            如果你希望进一步了解更完整的背景或功能细节，可以前往
+            <a href="https://portal-pc-bountyqueen.com">赏金女王</a>
+            的页面。那里保留了更系统的叙述，你可以根据自己的节奏翻阅，不必一次看完。
+        </p>
+    </div>
+
+    <!-- 特点 / 延伸提示（用极简卡片样式） -->
+    <h3>延伸提示</h3>
+    <p>
+        当你打开一个新的信息面板时，不妨先扫一眼导航结构或常见分类。很多看似复杂的内容，其实可以拆解成几组彼此关联的卡片。把一次性的“了解”变成可重复的“对照”，往往更省力。
+    </p>
+
+    <!-- FAQ 摘要 —— 克制且真实 -->
+    <h2>常见疑问 · 摘要</h2>
+    <div class="faq-compact">
+        <div class="faq-item">
+            <strong>这个页面是官方介绍吗？</strong>
+            <span>更接近一张信息索引卡，用于日常参照。官方信息以 <a href="https://portal-pc-bountyqueen.com" style="text-decoration: underline; text-underline-offset: 2px; color: #4b4944;">赏金女王</a> 网站为准。</span>
+        </div>
+        <div class="faq-item">
+            <strong>内容会频繁更新吗？</strong>
+            <span>卡片式页面本身保持稳定，但指向的链接可能会随着时间调整。建议以实际页面展示为准。</span>
+        </div>
+        <div class="faq-item">
+            <strong>需要注册或登录才能使用吗？</strong>
+            <span>作为索引页无需任何操作。若需要与具体服务交互，请参照目标网站自身的指引。</span>
+        </div>
+    </div>
+
+    <!-- 结尾留白 + 简洁脚注 -->
+    <hr>
+    <p class="quiet" style="margin-top: 0.3rem;">
+        你可以把这里当作一个安静的书签。没有弹窗，没有倒计时，只有你想看的内容。
+    </p>
+    <div class="footer-note">
+        · 信息卡片式 · 日常对照 ·
+    </div>
+</div>
+</body>
+</html>
